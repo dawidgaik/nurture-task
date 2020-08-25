@@ -1,0 +1,223 @@
+/* variables -----------------------------------------------------------------**/
+
+$black-color: #000000;
+$white-color: #ffffff;
+
+/* base -----------------------------------------------------------------**/
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    /* 1 rem=10px 10px/16px=62.5%  */
+    font-size: 62.5%;
+}
+
+body {
+    box-sizing: border-box;
+}
+
+
+/* mixin breakpoint -----------------------------------------------------------------*/
+
+@mixin respond($breakpoint) {
+    @if $breakpoint==medium {
+        @media only screen and (min-width: 48em) {
+            @content
+        }
+
+        ; //768x
+    }
+
+    @if $breakpoint==large {
+        @media only screen and (min-width: 62em) {
+            @content
+        }
+
+        ; //992px
+    }
+
+    @if $breakpoint==extra-large {
+        @media only screen and (min-width: 75em) {
+            @content
+        }
+
+        ; //1200px
+    }
+}
+
+/* typography -----------------------------------------------------------------**/
+
+body {
+    font-family: 'Gothic A1', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    font-size: 1.6rem;
+    font-style: normal;
+    color: $black-color;
+}
+
+.heading-secondary {
+    font-family: 'Gothic A1', sans-serif;
+    font-size: 2rem;
+    line-height: 3.2rem;
+    font-weight: 700;
+    padding-top: 2.2rem;
+
+    @include respond(medium) {
+        font-size: 2.4rem;
+    }
+
+    @include respond(extra-large) {
+        font-size: 2.8rem;
+    }
+}
+
+.heading-tertiary {
+    font-family: 'Gothic A1', sans-serif;
+    font-weight: bold;
+    font-size: 1.8rem;
+    line-height: 2.8rem;
+    font-weight: 500;
+    padding-bottom: 1.5rem;
+
+    @include respond(medium) {
+        font-size: 2rem;
+    }
+
+    @include respond(extra-large) {
+        font-size: 2.2rem;
+    }
+}
+
+.paragraph {
+    font-family: 'Gothic A1', sans-serif;
+    font-weight: normal;
+    font-size: 1.4rem;
+    line-height: 2.4rem;
+    padding-top: 2.8rem;
+    padding-bottom: 6rem;
+
+    @include respond(medium) {
+        font-size: 1.5rem;
+    }
+
+    @include respond(extra-large) {
+        font-size: 1.6rem;
+    }
+}
+
+
+.small-paragraph {
+    font-family: 'Gothic A1', sans-serif;
+    font-weight: normal;
+    font-size: 1.3rem;
+    line-height: 2rem;
+    padding-bottom: 3rem;
+
+
+    @include respond(large) {
+        padding-bottom: 0;
+    }
+
+    @include respond(extra-large) {
+        font-size: 1.4rem;
+    }
+}
+
+/* container style -----------------------------------------------------------------**/
+
+.container {
+    max-width: 111rem;
+    margin: 0 auto;
+}
+
+/* module style -----------------------------------------------------------------**/
+
+.module {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    @include respond(large) {
+        flex-direction: row;
+    }
+
+    &__content {
+
+        padding: 0 2rem;
+
+        @include respond(extra-large) {
+            width: 44.5rem;
+            margin-right: 11rem;
+            padding: 0;
+        }
+    }
+
+    &__slider {
+        max-width: 100%;
+
+    }
+
+
+    &__slider img {
+        display: block;
+        max-width: 100%;
+        object-fit: cover;
+
+        @include respond(large) {
+            height: 100%;
+        }
+
+    }
+
+    &__feature {
+        width: 19rem;
+        margin: 0 auto;
+        text-align: center;
+    }
+}
+
+/* slider style -----------------------------------------------------------------**/
+
+.swiper {
+
+    &-container {
+        width: 100%;
+        height: 100%;
+
+        @include respond(large) {
+            width: 55.5rem;
+            height: 40rem;
+        }
+    }
+
+    &-slide {
+        text-align: center;
+        font-size: 1.8rem;
+        background: #fff;
+
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+}
+
+.swiper-pagination-bullet-active {
+    background-color: $white-color;
+}
